@@ -1,0 +1,8 @@
+Name: Vinna Gu (vig37)
+answers.txt
+
+2. 0.0240 seconds
+3. 0.003285 seconds
+12. Dimensions of image: 750 x 1500 x 3 
+14. 12
+15. [row, col] = [604, 1290]
