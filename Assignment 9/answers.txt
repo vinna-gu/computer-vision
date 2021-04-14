@@ -1,0 +1,8 @@
+part_i.m result 
+acc = 0.125
+
+part_ii.m result
+acc = 0.5525
+
+part_iii.m result
+acc = 0.85
