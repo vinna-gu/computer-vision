@@ -65,5 +65,7 @@ Image files new_image.png and mean_sub.png
 Acknowledgement: Adriana Kovashka.
 
 <b>Reason for point deductions: </b>
-11) Duplicates should be removed(not just replaced by zeros). (-1) 
-19) Incorrect results. (-2)
+
+<b>#11</b> Duplicates should be removed(not just replaced by zeros). (-1) 
+
+<b>#19</b> Incorrect results. (-2)
