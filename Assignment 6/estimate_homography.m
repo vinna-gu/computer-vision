@@ -22,11 +22,13 @@ for i=1:1:size(PA, 1)
     
     % 1st row of A --> -x, -y, -1, 0, 0, 0, xx', yx' , x'
     A(((i * 2) - 1), :) = [ -x, -y, -1, 0, 0, 0, (x * xPrime), (y * xPrime), xPrime];
+    
     % 2nd row of A -->  0, 0,  0, -x, -y, -1, xy', yy', y'
     A((i * 2), :) = [0, 0,  0, -x, -y, -1, (x * yPrime), (y * yPrime), yPrime];
 end
 
-% disp(A(:, :));
+% % disp(A(:, :)); % just lookin
+
 % Now solve for H using: 
 [~, ~, V] = svd(A); 
 h = V(:, end); 

@@ -46,21 +46,21 @@ p2 = apply_homography([269, 42, 1], H);
 
 % display the first image and the second image side by side
 % keble
-% figure;
-% subplot(1, 2, 1);
-% hold on;
-% imshow(imread('keble1.png'));
-% plot(269, 42,'g.', 'MarkerSize', 25);
-% title(['keble1 image']);
-% 
-% subplot(1, 2, 2);
-% hold on;
-% imshow(imread('keble2.png'));
-% plot(p2(1), p2(2), 'y.', 'MarkerSize', 25);
-% title(['keble2 image']);
-% hold off;
+figure;
+subplot(1, 2, 1);
+hold on;
+imshow(imread('keble1.png'));
+plot(269, 42,'g.', 'MarkerSize', 25);
+title(['keble1 image']);
 
-% % uttower
+subplot(1, 2, 2);
+hold on;
+imshow(imread('keble2.png'));
+plot(p2(1), p2(2), 'y.', 'MarkerSize', 25);
+title(['keble2 image']);
+hold off;
+
+% % ~~~ UTTOWER IMGS ~~~
 % p2 = apply_homography([445, 513, 1], H);
 
 % figure;
@@ -78,10 +78,10 @@ p2 = apply_homography([269, 42, 1], H);
 % hold off;
 
 
-% ~~~~ STITCHING IMAGES PART ~~~~~
-% keble_mosaic.png
-img1 = imread('keble1.png');
-img2 = imread('keble2.png');
+% % ~~~~ STITCHING IMAGES PART ~~~~~
+% % keble_mosaic.png
+img1 = imread('keble1.png');    % change to 'uttower1.jpeg'
+img2 = imread('keble2.png');    % change to 'uttower2.jpeg'
 img2 = im2double(img2);         % set the image to a double
 img1 = im2double(img1);
 
@@ -97,33 +97,37 @@ canvas = zeros((img2x * 3), (img2y * 3));
 % starting from position row266:530 col362:722, place img2 in center
 canvas((img2x + 1): (img2x * 2), (img2y + 1): (img2y * 2), 1:3) = img2;
 
-% for each pixel at location p1 in image1
-for i=1:size(img1, 1)
-   for j=1:size(img1, 2)
+% for each pixel at location p1 in image1 x is the row y is the col, we
+% need to flippity flip the xy's when doing the homography thingy
+for x=1:size(img1, 1)   % <-- this is the row of image 1
+   for y=1:size(img1, 2)% <-- this is the col of image 1
        % apply the estimated homography to determine location p2
-       p2 = apply_homography([i, j, 1],H);
-
-       % round x and y values that were given from p2 using ceil/floor
+       p2 = apply_homography([y, x, 1], H);
+       
+       % let's initialize some floor/ceil values first
        floorX = floor(p2(1));
        floorY = floor(p2(2));
        ceilX = ceil(p2(1));
        ceilY = ceil(p2(2));
        
-       % adding the values of the given xy from p2 to fit with canvas
-       xCeilCanvas = ceilX + img2y;
-       xFloorCanvas = floorX + img2y;
-       yCeilCanvas = ceilY + img2x;
-       yFloorCanvas = floorY + img2x;
+       % for some reason it's outputting some strange lines on them? so i'm
+       % just going to ceil/floor the overall result 
+       img2xCeil = ceil(img2x + ceilY);
+       img2xFloor = floor(img2x + floorY);
+       img2yCeil = ceil(img2y + ceilX);
+       img2yFloor = floor(img2y + floorX);
+          
 
-       % store into the canvas
-       canvas(xCeilCanvas, yCeilCanvas, 1:3) = img1(i, j, 1:3);
-       canvas(xCeilCanvas, yFloorCanvas, 1:3) = img1(i, j, 1:3);
-       canvas(xFloorCanvas, yCeilCanvas, 1:3) = img1(i, j, 1:3);
-       canvas(xFloorCanvas, yFloorCanvas, 1:3) = img1(i, j, 1:3);
-        
+       % add to the four locations in large canvas
+       canvas(img2xFloor, img2yFloor, 1:3) = img1(x, y, 1:3);
+       canvas(img2xCeil, img2yFloor, 1:3) = img1(x, y, 1:3);
+       canvas(img2xFloor, img2yCeil, 1:3) = img1(x, y, 1:3);
+       canvas(img2xCeil, img2yCeil, 1:3) = img1(x, y, 1:3);
+       
    end
 end
 
-
+% display the stitched result
 figure;
 imshow(canvas);
+% why does my keble image have lines on them? what did i do wrong

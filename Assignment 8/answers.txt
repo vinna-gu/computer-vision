@@ -1,0 +1,4 @@
+After summing and taking the averages for the weight and their data sample, 
+we can conclude that the lowest in the hinge loss is in Weight 2 with 2.662313 
+and it had the lowest cross entropy loss with 1.405473. Overall, Weight 2
+had the lowest in two of the losses that were calculated. 
