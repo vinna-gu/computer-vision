@@ -1,0 +1,19 @@
+Question 1: For which of the three representations is the within-between ratio smallest?
+Based off of my the ratios computed with BOW and the given ratios (texture mean & concat), 
+it seems that texture mean had the smallest. 
+
+Question 2: Does the answer to this question depend on the value of k that you use?
+With all the ratios besides k=100, the valuse were unexpectedly high. To me I do think the k needs to be
+somewhat specific in order to get a better ratio. 
+
+
+Question 3: Does it depend on the number of keypoints you extract? (Try 500, 1000, 2000, 3000.)
+I think it does. It also seems that with fewer keypoints (500 keypoints), that my ratios for BOW were
+lower than the higher keypoints. 3000 keypoints might be an exception with one of the lowest being 0.334283
+
+Question 4: Which of the three types of descriptors that you used is the best one? How can you tell?
+I will say that texture mean seemed to be the best one considering the fact that it had the lowest ratio.
+With the lower ratio, it allows for better detection for images that contrast one another greatly. 
+
+Question 5: Is this what you expected? Why or why not?
+I was hoping BOW to work because of it's ability to detect deformations
