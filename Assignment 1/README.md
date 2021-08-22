@@ -40,7 +40,7 @@ Make sure to go over the entire Matlab tutorial linked from the schedule on the 
 
 <b>Images:</b>
 
-12) [2 pts] Read this image into Matlab as a matrix, and write down its dimensions.
+12) [2 pts] Read this image (pittsburgh.png) into Matlab as a matrix, and write down its dimensions.
 
 13) [2 pts] Convert the image into grayscale.
 
