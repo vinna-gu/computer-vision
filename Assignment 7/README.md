@@ -3,3 +3,11 @@
 This did not count toward my final grade
 
 Syllabus allowed for lowest HW grade to be dropped
+
+**Reasons for grade deduction:**
+
+2.1) Incomplete. (-6)
+
+3.1) Incomplete. (-6)
+
+3.2) Incomplete. (-14)
